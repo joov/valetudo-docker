@@ -1,0 +1,12 @@
+FROM ubuntu:18.04
+
+WORKDIR /app/rockrobo
+
+RUN apt-get update && \
+    apt-get install -y git && \
+    apt-get install -y wget && \
+    apt-get install -y openssl && \
+    apt-get install -y ccrypt && \
+    apt-get install -y dos2unix
+
+COPY ./create-image.sh .

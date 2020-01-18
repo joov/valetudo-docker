@@ -1,15 +1,21 @@
 version: '3'
 services:
+  build:
     build:
-        image: ubuntu:18.04
-        volumes:
-          - ./build:/app/rockrobo
-        command: ./create-image.sh
-        environment:
-          EMAIL_ADDR: johannes.wenzel@web.de
-          ROBOT_TYPE: s5
-          FIRMWARE_VERSION: /v11_001886.fullos.pkg
-          NTP_SERVER: 192.168.178.1
+      context: ./build
+    environment: 
+      EMAIL_ADDR: johannes.wenzel@web.de
+      ROBOT_TYPE: s5
+      FIRMWARE_VERSION: v11_001886.fullos.pkg
+      NTP_SERVER: 192.168.178.1
+    # volumes:
+    #   - ./build:/app/rockrobo
+    cap_add:
+      - ALL
+    security_opt:
+      - apparmor:unconfined
+    
+    command: ./create-image.sh
 
-    command:
-        image: pyhton: 3.8.1-buster
+  command:
+    image: pyhton:3.8.1-buster

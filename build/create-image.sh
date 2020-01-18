@@ -1,11 +1,11 @@
 #!/bin/bash
 
-ssh-keygen -t ed25519 -C "${EMAIL_ADDR}"
+ssh-keygen -t ed25519 -C "${EMAIL_ADDR}" -N 123456 -f ~/.ssh/id_ed25519
 
-https://github.com/dgiese/dustcloud.git 
-mkdir valetudo && \
-pushd valetudo && \
-wget https://github.com/Hypfer/Valetudo/releases/latest && \
+git clone https://github.com/dgiese/dustcloud.git 
+mkdir valetudo
+pushd valetudo
+wget https://github.com/Hypfer/Valetudo/releases/download/0.4.0/valetudo
 mkdir deployment
 pushd deployment
 wget https://github.com/Hypfer/Valetudo/raw/master/deployment/valetudo.conf
